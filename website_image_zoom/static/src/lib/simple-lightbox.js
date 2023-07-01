@@ -719,8 +719,8 @@ class SimpleLightbox {
 
     zoomPanElement(targetOffsetX, targetOffsetY, targetScale) {
 
-        this.currentImage.style[this.transitionPrefix + 'transform'] = 'translate(' + targetOffsetX + ',' + targetOffsetY + ') scale(' + targetScale + ')';
-
+        //this.currentImage.style[this.transitionPrefix + 'transform'] = 'translate(' + targetOffsetX + ',' + targetOffsetY + ') scale(' + targetScale + ')';
+        this.currentImage.style.setProperty([this.transitionPrefix + 'transform'], 'translate(' + targetOffsetX + ',' + targetOffsetY + ') scale(' + targetScale + ')', 'important');
     };
 
     minMax(value, min, max) {

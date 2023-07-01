@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="zoom_assets_frontend" inherit_id="website.assets_frontend"
+              name="Shop Inherited">
+        <xpath expr="." position="inside">
+            <!-- jQuery addons -->
+            <script type="text/javascript"
+                    src="/web/static/lib/jquery.scrollTo/jquery.scrollTo.js"/>
+            <!-- Added PlugIn files required for magnifying image -->
+            <link rel="stylesheet"
+                  href="/website_image_zoom/static/src/lib/simple-lightbox.scss"/>
+            <script type="text/javascript"
+                    src="/website_image_zoom/static/src/lib/simple-lightbox.js"/>
+            <script type="text/javascript"
+                    src="/website_image_zoom/static/src/js/website_sale.js"/>
+            <link rel="stylesheet"
+                  href="/website_image_zoom/static/src/css/pro_img.css"/>
+        </xpath>
+    </template>
+
+    <!-- Template For Multiple Product Image Zoom & Image Responsive -->
+<!-- ojo esto reemplaza a la galeria principal de website que esta en la fila /opt/odoo/addons/website_sale/views/templates.xml-->
+<template id="product_extended" name="product_extended" inherit_id="website_sale.shop_product_carousel">
+<xpath expr="//div[@id='o-carousel-product']" position="replace">
+		<div id="o-carousel-product" class="carousel slide" data-ride="carousel" data-interval="0">
+            <div class="carousel-outer position-relative">
+                <div class="carousel-inner h-100 gallery">
+                    <t t-foreach="product_images" t-as="product_image">
+                        <div t-attf-class="carousel-item h-100#{' active' if product_image_first else ''}">
+	                        <input type="hidden" class="variant_img_display" t-att-value="product.variant_bool"/>
+	           				<input type="hidden" class="product_img_display" t-att-value="product.id"/>
+                            <div t-if="product_image._name == 'product.image' and product_image.embed_code" class="d-flex align-items-center justify-content-center h-100 embed-responsive embed-responsive-16by9 ex1" >
+                                <t t-raw="product_image.embed_code"/>
+                            </div>
+                            <div  t-else="" t-field="product_image.image_1920" class="d-flex align-items-center justify-content-center h-100 ex1" t-options='{"widget": "image", "preview_image": "image_1024", "class": "product_detail_img mh-100", "alt-field": "name", "zoom": product_image.can_image_1024_be_zoomed and "image_1920", "itemprop": "image"}'/>
+                        </div>
+                    </t>
+                </div>
+                <t t-if="len(product_images) > 1">
+                    <a class="carousel-control-prev" href="#o-carousel-product" role="button" data-slide="prev">
+                        <span class="fa fa-chevron-left p-2" role="img" aria-label="Previous" title="Previous"/>
+                    </a>
+                    <a class="carousel-control-next" href="#o-carousel-product" role="button" data-slide="next">
+                        <span class="fa fa-chevron-right p-2" role="img" aria-label="Next" title="Next"/>
+                    </a>
+                </t>
+            </div>
+            <!-- galeria de fotos -->
+            <div t-ignore="True" class="d-none d-md-block text-center">
+                <ol t-if="len(product_images) > 1" class="carousel-indicators d-inline-block position-static mx-auto my-0 p-1 text-left">
+                    <t t-foreach="product_images" t-as="product_image">
+                        <li t-attf-class="d-inline-block m-1 align-top {{'active' if product_image_first else ''}}" data-target="#o-carousel-product" t-att-data-slide-to="str(product_image_index)">
+                            <div t-field="product_image.image_128" t-options='{"widget": "image", "qweb_img_responsive": False, "class": "o_image_64_contain", "alt-field": "name"}'/>
+                        <i t-if="product_image._name == 'product.image' and product_image.embed_code" class="fa fa-2x fa-play-circle-o o_product_video_thumb"/>
+                    </li></t>
+                </ol>
+            </div>
+        </div>
+</xpath>
+</template>
+</odoo>

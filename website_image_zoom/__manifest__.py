@@ -7,7 +7,7 @@
     'author': 'PROSBOL',
     'maintainer': 'PROSBOL.',
     'website': 'https://www.prosbol.com',
-    'version': '14.0.2',
+    'version': '14.0.3',
     'license': 'AGPL-3',
     'depends': [
         'website_sale',

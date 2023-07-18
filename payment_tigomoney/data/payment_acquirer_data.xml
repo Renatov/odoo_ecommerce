@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="payment_acquirer_tigomoney" model="payment.acquirer">
+            <field name="name">Tigomoney</field>
+            <field name="image_128" type="base64" file="payment_tigomoney/static/src/img/tigo-money.jpg"/>
+            <field name="provider">tigomoney</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="view_template_id" ref="tigomoney_acquirer_button"/>
+            <field name="pre_msg"><![CDATA[
+<p>You will be redirected to the Tigomoney website after clicking on the payment button.</p>]]></field>
+			<field name="tgm_hkey">dummy</field>
+            <field name="tgm_hkey_encript">dummy</field>
+            <field name="tgm_url_produccion">dummy</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+       <template id="index">
+       <t t-call="website.layout">
+         <div class="panel panel-info col-md-6 col-md-offset-3">
+           <t t-set="additional_title">Resultado de transaccion</t>
+          
+          <div class="alert alert-danger" role="alert">
+             <t>Resultado de verificacion de pago: <em t-esc="error" /></t>
+          </div>
+         </div>
+       </t>
+       <title></title>
+       </template>
+</odoo>

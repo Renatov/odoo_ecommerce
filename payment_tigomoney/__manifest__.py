@@ -4,6 +4,7 @@
     "author": "PROSBOL",
     'name': 'Tigomoney Payment Acquirer',
     'category': 'Account',
+    'license': 'AGPL-3',
     'summary': 'Payment Acquirer: Tigomomey Implementation',
     'version': '14.1.1',
     'description': """Tigomoney Payment Acquirer por favor instale primero la libreria pip3 install zeep""",
